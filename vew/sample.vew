@@ -1,0 +1,65 @@
+:title Introduction to Ruby
+
+:description Introduction to Ruby
+:author Jimmy Cheng
+:email jimmyken793@gmail.com
+
+:stylesheet_link_tag ./css/main.css, ./css/styles.css, ./css/jquery-ui.css
+:stylesheet_link_tag ./css/zenburn.css
+
+:javascript_include_tag js/jquery.min.js
+:javascript_include_tag https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js
+:javascript_include_tag js/reveal.js, js/highlight.js, js/ruler.js
+:javascript_include_tag js/index.js
+
+!SLIDE
+
+CSS
+===
+{:.nav}
+* [html.html](HTML)
+* Javascript
+
+!STACK
+
+  !SLIDE
+  長這樣
+  ----
+  
+
+  !SLIDE
+  CSS Syntax
+  ---
+
+    ![images/css/selector.gif](Selection and declaration)
+
+    [http://w3schools.com/css/css_syntax.asp](Source: W3Schools)
+
+
+  !SLIDE
+  怎麼加進 HTML
+  ------------
+
+  在 `<head>` 中加入
+
+  {:.nopreview}
+  ~~~~~~~
+   <link rel="stylesheet" type="text/css" href="path/to/style.css">
+  ~~~~~~~
+
+  或直接把 CSS 寫在 `<style>` 裡；
+
+  ~~~~~~~
+    <style type="text/css">
+      div {
+        color: blue;
+      }
+    </style>
+    <div>I am div!</div>
+  ~~~~~~~
+
+  `<style>` 可放在 `<head>` 或 `<body>` 均可。
+
+!ENDSTACK
+
+---
