@@ -18,8 +18,7 @@
  ![assets/perfectruby.jpg]
 
 !SLIDE
-# What is Ruby?
-  
+# What is Ruby?  
 
 !SLIDE
 # Created by Yukihiro Matsumoto
@@ -326,8 +325,40 @@ end
 ```
 
 !SLIDE
+# Send
+```
+ruby-1.9.2-p180 :124 > new_wife.send "husband"
+ => :me 
+ruby-1.9.2-p180 :125 > new_wife.send "husband=", :neighbor_old_wang
+ => :neighbor_old_wang
+ruby-1.9.2-p180 :126 > puts new_wife.husband
+neighbor_old_wang
+ => nil 
+```
+
+!SLIDE
 # Regexp
 ```
 /Regexp/
+%r!regexp!
 ```
+
+!SLIDE
+```
+if "hello, world!" ~= /hello,.*/
+  puts "hello, world!"
+end
+```
+
+!SLIDE
+# Match
+```
+ruby-1.9.2-p180 :121 > /([^ ]+) ((?:is)|(?:am)|(?:are)) ([^.]*)\./.match("I am a human.")
+ => #<MatchData "I am a human." 1:"I" 2:"am" 3:"a human"> 
+ruby-1.9.2-p180 :122 > /([^ ]+) ((?:is)|(?:am)|(?:are)) ([^.]*)\./.match("He is a student.")
+ => #<MatchData "He is a student." 1:"He" 2:"is" 3:"a student"> 
+```
+
+!SLIDE
+# [http://rubular.com/](Rebular)
 

@@ -29,7 +29,6 @@
 <section>
 <h1>What is Ruby?</h1>
 <p></p>
-<p></p>
 </section>
 <section>
 <h1>Created by Yukihiro Matsumoto</h1>
@@ -397,11 +396,50 @@ end
 <p></p>
 </section>
 <section>
+<h1>Send</h1>
+<pre><code><!--
+-->ruby-1.9.2-p180 :124 &gt; new_wife.send &quot;husband&quot;
+=&gt; :me 
+ruby-1.9.2-p180 :125 &gt; new_wife.send &quot;husband=&quot;, :neighbor_old_wang
+=&gt; :neighbor_old_wang
+ruby-1.9.2-p180 :126 &gt; puts new_wife.husband
+neighbor_old_wang
+=&gt; nil 
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
 <h1>Regexp</h1>
 <pre><code><!--
 -->/Regexp/
+%r!regexp!
 <!--
 --></code></pre>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->if &quot;hello, world!&quot; ~= /hello,.*/
+puts &quot;hello, world!&quot;
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Match</h1>
+<pre><code><!--
+-->ruby-1.9.2-p180 :121 &gt; /([^ ]+) ((?:is)|(?:am)|(?:are)) ([^.]*)\./.match(&quot;I am a human.&quot;)
+=&gt; #&lt;MatchData &quot;I am a human.&quot; 1:&quot;I&quot; 2:&quot;am&quot; 3:&quot;a human&quot;&gt; 
+ruby-1.9.2-p180 :122 &gt; /([^ ]+) ((?:is)|(?:am)|(?:are)) ([^.]*)\./.match(&quot;He is a student.&quot;)
+=&gt; #&lt;MatchData &quot;He is a student.&quot; 1:&quot;He&quot; 2:&quot;is&quot; 3:&quot;a student&quot;&gt; 
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1><a href="http://rubular.com/">Rebular</a></h1>
 <p></p>
 </section>
       </div>
