@@ -14,52 +14,320 @@
 
 !SLIDE
 
-CSS
-===
-{:.nav}
-* [html.html](HTML)
-* Javascript
+# Introduction to Ruby
+ ![assets/perfectruby.jpg]
 
-!STACK
-
-  !SLIDE
-  長這樣
-  ----
+!SLIDE
+# What is Ruby?
   
 
-  !SLIDE
-  CSS Syntax
-  ---
+!SLIDE
+# Created by Yukihiro Matsumoto
+```
+I wanted a scripting language that was more powerful than Perl, and more object-oriented than Python. That's why I decided to design my own language
+```
+!SLIDE
+# An object-oriented scripting language
+  
+!SLIDE
+# Philosophy
 
-    ![images/css/selector.gif](Selection and declaration)
+!SLIDE
+# We are the masters. They are the slaves.
 
-    [http://w3schools.com/css/css_syntax.asp](Source: W3Schools)
+!SLIDE
+# Naming Convention
+
+!SLIDE
+{:[type=ruby]}
+```
+ClassName
+ModuleName
+
+COSTANTS
+
+method_name
+variable_name
+
+$global_variable
+
+@instance_variable
+
+@@static_variable
+```
+
+!SLIDE
+# Everything is a Object
+
+!SLIDE
+```
+ruby-1.9.2-p180 :001 > 1.class
+ => Fixnum 
+ruby-1.9.2-p180 :002 > "hello, string".class
+ => String 
+ruby-1.9.2-p180 :003 > /regexp/.class
+ => Regexp
+ruby-1.9.2-p180 :004 > String.class
+ => Class 
+```
+
+!SLIDE
+# String
+
+!SLIDE
+```
+ruby-1.9.2-p180 :009 > str="ruby"
+ => "ruby" 
+ruby-1.9.2-p180 :010 > scentence="learn #{str}"
+ => "learn ruby" 
+ruby-1.9.2-p180 :011 > str="ruby"
+ => "ruby" 
+ruby-1.9.2-p180 :012 > scentence=%{learn "#{str}"}
+ => "learn \"ruby\"" 
+ruby-1.9.2-p180 :013 > scentence=%<learn "#{str}">
+ => "learn \"ruby\"" 
+ruby-1.9.2-p180 :014 > scentence.reverse
+ => "\"ybur\" nrael" 
+ruby-1.9.2-p180 :015 > scentence.length
+ => 12
+```
+
+!SLIDE
+# Block is a object, too.
+
+!SLIDE
+```
+ruby-1.9.2-p180 :019 > kerker = lambda do |a,b,c|
+ruby-1.9.2-p180 :020 >     puts a,b,c
+ruby-1.9.2-p180 :021?> end
+ => #<Proc:0x00000001fac598@(irb):19 (lambda)> 
+```
+
+!SLIDE
+# Define a class
+
+!SLIDE
+```
+class Girlfriend
+
+end
+```
+
+!SLIDE
+# Define attributes
+
+!SLIDE
+```
+class Girlfriend
+    attr_accessor :name, :age, :height, 
+                  :weight, :gender
+end
+```
+
+!SLIDE
+# Get a new girlfriend
+
+!SLIDE
+```
+new_happy = Girlfriend.new
+new_happy.name = "***"
+new_happy.age = 18
+new_happy.height = 155
+new_happy.weight = 41
+new_happy.gender = :female
+```
+
+!SLIDE
+# Seems stupid....
+
+!SLIDE
+# Add a constructor
+
+!SLIDE
+```
+class Girlfriend
+  def initialize(hash)
+    @name = hash[:name]
+    @age = hash[:age]
+    @height = hash[:height]
+    @weight = hash[:weight]
+    @gender = hash[:gender]
+  end
+end
+```
 
 
-  !SLIDE
-  怎麼加進 HTML
-  ------------
+!SLIDE
+```
+new_happy = Girlfriend.new(
+  {:name => "***",
+   :age => 18, 
+   :height => 155, 
+   :weight => 41, 
+   :gender => :female
+  })
+```
+## or
 
-  在 `<head>` 中加入
+```
+new_happy = Girlfriend.new(
+   :name => "***",
+   :age => 18, 
+   :height => 155, 
+   :weight => 41, 
+   :gender => :female
+  )
+```
 
-  {:.nopreview}
-  ~~~~~~~
-   <link rel="stylesheet" type="text/css" href="path/to/style.css">
-  ~~~~~~~
+!SLIDE
+# Add methods
 
-  或直接把 CSS 寫在 `<style>` 裡；
+!SLIDE
+```
+class Girlfriend
+  def decide_launch()
+    return "no comment"
+  end
+  def self.static_method()
+  end
+end
+```
 
-  ~~~~~~~
-    <style type="text/css">
-      div {
-        color: blue;
-      }
-    </style>
-    <div>I am div!</div>
-  ~~~~~~~
+!SLIDE
+# Inheritance
 
-  `<style>` 可放在 `<head>` 或 `<body>` 均可。
+!SLIDE
+```
+class Wife < Girlfriend
+  attr_accessor :husband, :bank_account
+  def initialize(hash)
+    @husband = hash[:husband]
+    @bank_account = hash[:bank_account]
+    super
+  end
+  def rob_salary
+    puts "#{@name}takes #{@husband}'s salary away!"
+  end
+end
+```
 
-!ENDSTACK
+!SLIDE
+# Time to get married
 
----
+!SLIDE
+```
+new_wife = Wife.new(
+   :name => "***",
+   :age => 18, 
+   :height => 155, 
+   :weight => 41, 
+   :gender => :female,
+   :husband => :me,
+   :bank_account => 0
+  )
+```
+
+!SLIDE
+# Super power
+
+```
+super
+super()
+super(arg1, arg2)
+```
+
+!SLIDE
+# Arguments
+```
+def my_method(arg1, arg2, arg3)
+def my_method(arg1, arg2, arg3 = 0)
+def my_method(arg1, arg2, *args)
+def my_method(arg1, &block)
+```
+
+!SLIDE
+# Block as an argument
+
+!SLIDE
+```
+def my_method(arg1, &block)
+   puts block
+   yield
+end
+```
+## or 
+```
+def my_method(&block)
+   yield
+end
+```
+
+!SLIDE
+# Flow control
+
+!SLIDE
+# if
+```
+if a>b
+  puts a
+elsif b<a
+  puts b
+else
+  puts "equal"
+end
+```
+## or
+```
+puts "Game Over" if hp == 0 
+puts "Game Over" unless hp > 0 
+```
+
+!SLIDE
+# case
+```
+case input
+  when 1, 2, 3
+    puts "1~3"
+  when 4, 5..10
+    puts "4~10"
+end
+```
+or
+```
+case input
+  when "How are you?"
+    puts "I'm fine, thank you. And you?"
+  when /.*\./
+    puts "Sorry, I can't understand you."
+end
+```
+
+!SLIDE
+# while
+```
+while a>b
+  puts a
+  a=a-1
+end
+```
+
+!SLIDE
+# for
+```
+for i in 0..9 do
+  puts i
+end
+```
+or
+```
+for e in ['a', 'b', 'c'] do
+  puts e
+end
+```
+
+!SLIDE
+# Regexp
+```
+/Regexp/
+```
+

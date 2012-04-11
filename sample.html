@@ -21,57 +21,389 @@
 <p></p>
 <p></p>
 <section>
+<h1>Introduction to Ruby</h1>
 <p></p>
-<h1>CSS</h1>
-<ul class="nav">
-<li><a href="html.html">HTML</a></li>
-<li>Javascript</li>
-</ul>
+<p><img src="assets/perfectruby.jpg"></p>
 <p></p>
 </section>
 <section>
-<p></p>
-<section>
-<h2>長這樣</h2>
+<h1>What is Ruby?</h1>
 <p></p>
 <p></p>
 </section>
 <section>
-<h2>CSS Syntax</h2>
-<p></p>
-<p><img src="images/css/selector.gif" alt="Selection and declaration"></p>
-<p></p>
-<p><a href="http://w3schools.com/css/css_syntax.asp">Source: W3Schools</a></p>
-<p></p>
+<h1>Created by Yukihiro Matsumoto</h1>
+<pre><code><!--
+-->I wanted a scripting language that was more powerful than Perl, and more object-oriented than Python. That&apos;s why I decided to design my own language
+<!--
+--></code></pre>
+</section>
+<section>
+<h1>An object-oriented scripting language</h1>
 <p></p>
 </section>
 <section>
-<h2>怎麼加進 HTML</h2>
+<h1>Philosophy</h1>
 <p></p>
-<p>在 <code>&lt;head&gt;</code> 中加入</p>
+</section>
+<section>
+<h1>We are the masters. They are the slaves.</h1>
 <p></p>
-<script type="text/x-sample" class="nopreview">
-   <link rel="stylesheet" type="text/css" href="path/to/style.css">
+</section>
+<section>
+<h1>Naming Convention</h1>
+<p></p>
+</section>
+<section>
+<pre type="ruby"><code><!--
+-->ClassName
+ModuleName
 
-</script>
-<p></p>
-<p>或直接把 CSS 寫在 <code>&lt;style&gt;</code> 裡；</p>
-<p></p>
-<script type="text/x-sample">
-    <style type="text/css">
-      div {
-        color: blue;
-      }
-    </style>
-    <div>I am div!</div>
+COSTANTS
 
-</script>
-<p></p>
-<p><code>&lt;style&gt;</code> 可放在 <code>&lt;head&gt;</code> 或 <code>&lt;body&gt;</code> 均可。</p>
+method_name
+variable_name
+
+$global_variable
+
+@instance_variable
+
+@@static_variable
+<!--
+--></code></pre>
 <p></p>
 </section>
+<section>
+<h1>Everything is a Object</h1>
+<p></p>
 </section>
-<h2></h2>
+<section>
+<pre><code><!--
+-->ruby-1.9.2-p180 :001 &gt; 1.class
+=&gt; Fixnum 
+ruby-1.9.2-p180 :002 &gt; &quot;hello, string&quot;.class
+=&gt; String 
+ruby-1.9.2-p180 :003 &gt; /regexp/.class
+=&gt; Regexp
+ruby-1.9.2-p180 :004 &gt; String.class
+=&gt; Class 
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>String</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->ruby-1.9.2-p180 :009 &gt; str=&quot;ruby&quot;
+=&gt; &quot;ruby&quot; 
+ruby-1.9.2-p180 :010 &gt; scentence=&quot;learn #{str}&quot;
+=&gt; &quot;learn ruby&quot; 
+ruby-1.9.2-p180 :011 &gt; str=&quot;ruby&quot;
+=&gt; &quot;ruby&quot; 
+ruby-1.9.2-p180 :012 &gt; scentence=%{learn &quot;#{str}&quot;}
+=&gt; &quot;learn \&quot;ruby\&quot;&quot; 
+ruby-1.9.2-p180 :013 &gt; scentence=%&lt;learn &quot;#{str}&quot;&gt;
+=&gt; &quot;learn \&quot;ruby\&quot;&quot; 
+ruby-1.9.2-p180 :014 &gt; scentence.reverse
+=&gt; &quot;\&quot;ybur\&quot; nrael&quot; 
+ruby-1.9.2-p180 :015 &gt; scentence.length
+=&gt; 12
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Block is a object, too.</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->ruby-1.9.2-p180 :019 &gt; kerker = lambda do |a,b,c|
+ruby-1.9.2-p180 :020 &gt;     puts a,b,c
+ruby-1.9.2-p180 :021?&gt; end
+=&gt; #&lt;Proc:0x00000001fac598@(irb):19 (lambda)&gt; 
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Define a class</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->class Girlfriend
+
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Define attributes</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->class Girlfriend
+attr_accessor :name, :age, :height, 
+              :weight, :gender
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Get a new girlfriend</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->new_happy = Girlfriend.new
+new_happy.name = &quot;***&quot;
+new_happy.age = 18
+new_happy.height = 155
+new_happy.weight = 41
+new_happy.gender = :female
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Seems stupid....</h1>
+<p></p>
+</section>
+<section>
+<h1>Add a constructor</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->class Girlfriend
+def initialize(hash)
+  @name = hash[:name]
+  @age = hash[:age]
+  @height = hash[:height]
+  @weight = hash[:weight]
+  @gender = hash[:gender]
+end
+end
+<!--
+--></code></pre>
+<p></p>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->new_happy = Girlfriend.new(
+{:name =&gt; &quot;***&quot;,
+ :age =&gt; 18, 
+ :height =&gt; 155, 
+ :weight =&gt; 41, 
+ :gender =&gt; :female
+})
+<!--
+--></code></pre>
+<h2>or</h2>
+<p></p>
+<pre><code><!--
+-->new_happy = Girlfriend.new(
+ :name =&gt; &quot;***&quot;,
+ :age =&gt; 18, 
+ :height =&gt; 155, 
+ :weight =&gt; 41, 
+ :gender =&gt; :female
+)
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Add methods</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->class Girlfriend
+def decide_launch()
+  return &quot;no comment&quot;
+end
+def self.static_method()
+end
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Inheritance</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->class Wife &lt; Girlfriend
+attr_accessor :husband, :bank_account
+def initialize(hash)
+  @husband = hash[:husband]
+  @bank_account = hash[:bank_account]
+  super
+end
+def rob_salary
+  puts &quot;#{@name}takes #{@husband}&apos;s salary away!&quot;
+end
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Time to get married</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->new_wife = Wife.new(
+ :name =&gt; &quot;***&quot;,
+ :age =&gt; 18, 
+ :height =&gt; 155, 
+ :weight =&gt; 41, 
+ :gender =&gt; :female,
+ :husband =&gt; :me,
+ :bank_account =&gt; 0
+)
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Super power</h1>
+<p></p>
+<pre><code><!--
+-->super
+super()
+super(arg1, arg2)
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Arguments</h1>
+<pre><code><!--
+-->def my_method(arg1, arg2, arg3)
+def my_method(arg1, arg2, arg3 = 0)
+def my_method(arg1, arg2, *args)
+def my_method(arg1, &amp;block)
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Block as an argument</h1>
+<p></p>
+</section>
+<section>
+<pre><code><!--
+-->def my_method(arg1, &amp;block)
+puts block
+yield
+end
+<!--
+--></code></pre>
+<h2>or</h2>
+<pre><code><!--
+-->def my_method(&amp;block)
+yield
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Flow control</h1>
+<p></p>
+</section>
+<section>
+<h1>if</h1>
+<pre><code><!--
+-->if a&gt;b
+puts a
+elsif b&lt;a
+puts b
+else
+puts &quot;equal&quot;
+end
+<!--
+--></code></pre>
+<h2>or</h2>
+<pre><code><!--
+-->puts &quot;Game Over&quot; if hp == 0 
+puts &quot;Game Over&quot; unless hp &gt; 0 
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>case</h1>
+<pre><code><!--
+-->case input
+when 1, 2, 3
+  puts &quot;1~3&quot;
+when 4, 5..10
+  puts &quot;4~10&quot;
+end
+<!--
+--></code></pre>
+<p>or</p>
+<pre><code><!--
+-->case input
+when &quot;How are you?&quot;
+  puts &quot;I&apos;m fine, thank you. And you?&quot;
+when /.*\./
+  puts &quot;Sorry, I can&apos;t understand you.&quot;
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>while</h1>
+<pre><code><!--
+-->while a&gt;b
+puts a
+a=a-1
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>for</h1>
+<pre><code><!--
+-->for i in 0..9 do
+puts i
+end
+<!--
+--></code></pre>
+<p>or</p>
+<pre><code><!--
+-->for e in [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;] do
+puts e
+end
+<!--
+--></code></pre>
+<p></p>
+</section>
+<section>
+<h1>Regexp</h1>
+<pre><code><!--
+-->/Regexp/
+<!--
+--></code></pre>
+<p></p>
+</section>
       </div>
 
       <!-- The navigational controls UI -->
